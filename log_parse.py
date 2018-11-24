@@ -138,29 +138,35 @@ def filter_www(lines):
 #         print('tha same is here')
 #     return
 
-def search_avg(lines):
-    same_lines = []
-    # diff_lines = []
-    i = 0
-    for line in lines:
-        # for i in line:
-        same_lines = set(line[i]['url'] & set(line[i+1]['url']))
-        # if line['url'] == lines[int(line)+1]:
-        #     same_lines.append(line)
-        # else:
-        #     diff_lines.append(line)
-    return same_lines
+# def search_avg(lines):
+#     same_lines = []
+#     # diff_lines = []
+#     i = 0
+#     for line in lines:
+#         # for i in line:
+#         same_lines = set(line[i]['url'] & set(line[i+1]['url']))
+#         # if line['url'] == lines[int(line)+1]:
+#         #     same_lines.append(line)
+#         # else:
+#         #     diff_lines.append(line)
+#     return same_lines
 
 def find_same(lines):
-    # i = 0
+    i = 0
     result_same = []
     result_dif = []
-    for i in range(len(lines)-1):
-        if lines[i]['request_type'] == lines[i+1]['request_type'] and lines[i]['url'] == lines[i+1]['url']:
-            lines.append(result_same)
-        else:
-            lines.append(result_dif)
-    return result_same, result_dif
+    result = {}
+    # print(lines)
+    # for i in range(len(lines)-1):
+    #     if lines[i]['request_type'] == lines[i+1]['request_type'] and lines[i]['url'] == lines[i+1]['url']:
+    #         result_same.append(lines)
+    #     else:
+    #         result_dif.append(lines)
+    # return result_same, result_dif
+    for line in lines:
+        url = line['url']
+        if not result.get(url, None):
+            url =
 
 
 
@@ -189,7 +195,7 @@ def parse(
         slow_queries=False
         ):
     lines = read_log_file()
-    print(lines)
+    # print(lines)
     if ignore_files:
         lines = filter_files(lines)
     if ignore_urls:
